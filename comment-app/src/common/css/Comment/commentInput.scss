@@ -1,0 +1,52 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+
+  &-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &-title {
+      font-size: 16px;
+      width: 80px;
+    }
+
+    &-input {
+      flex: 1;
+      display: flex;
+
+      &>input {
+        width: 100%;
+      }
+
+      &>textarea {
+        width: 100%;
+      }
+    }
+  }
+
+  &-btn {
+
+    &>button {
+      width: 100px;
+      float: right;
+      border: 1px solid rgb(5, 135, 235);
+      outline: none;
+      background: rgb(5, 135, 235);
+      color: white;
+
+      font: {
+        size: 16px;
+        weight: bold;
+      }
+    }
+  }
+}

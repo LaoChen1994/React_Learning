@@ -1,0 +1,14 @@
+.wrapper {
+  width: 500px;
+  padding: 20px;
+  background: #eee;
+  border: 2px solid #a892eb;
+  margin: 20px auto;
+}
+
+.modules{
+  margin-top: 20px;
+  &:first-child {
+    margin: 0;
+  }
+}
