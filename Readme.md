@@ -1,5 +1,13 @@
 # React 学习笔记
 
+## 参考资料
+
+本学习笔记主要参考: [React.js 小书](http://huziketang.mangojuice.top/books/react/lesson1)
+
+具体代码详解和 Notes 可参见 [我的 CSDN 博客](https://blog.csdn.net/qq_24724109/column/info/40972)
+
+---
+
 ## first-react
 
 ### 简介
@@ -22,11 +30,9 @@
 
 ### 内容包括
 
-|id|组件名|功能|
--|-|-
-|1|CommentApp.js|评论区整体挂载组件|
-|2|CommentInput.js|评论区的用户输入部分|
-|3|CommentList.js|评论区用户评论列表|
-|4|Comment.js|单条的用户评论信息|
-
-
+| id  | 组件名          | 功能                 |
+| --- | --------------- | -------------------- |
+| 1   | CommentApp.js   | 评论区整体挂载组件   |
+| 2   | CommentInput.js | 评论区的用户输入部分 |
+| 3   | CommentList.js  | 评论区用户评论列表   |
+| 4   | Comment.js      | 单条的用户评论信息   |
