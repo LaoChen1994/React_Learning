@@ -1,1 +1,32 @@
-# React
+# React 学习笔记
+
+## first-react
+
+### 简介
+
+### 内容如下：
+
+- 编写一个简单的 React 组件
+- state 与 setState
+- 参数的动态绑定
+- 事件监听绑定
+- 父子组件间通信
+- 组件间的参数传递(状态提升)
+- 列表数据渲染
+
+## comment-app
+
+### 简介
+
+该 app 下使用基础的 React 语法完成了一个评论区的基本功能
+
+### 内容包括
+
+|id|组件名|功能|
+-|-|-
+|1|CommentApp.js|评论区整体挂载组件|
+|2|CommentInput.js|评论区的用户输入部分|
+|3|CommentList.js|评论区用户评论列表|
+|4|Comment.js|单条的用户评论信息|
+
+
