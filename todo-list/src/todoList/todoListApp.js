@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './todoList';
 import TForm from './form';
+import './css/app.scss';
 
 class todoListApp extends Component {
   constructor() {
@@ -19,10 +20,13 @@ class todoListApp extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <h1>TODO</h1>
-        <List content={this.state.todoList}/>
-        <TForm number={this.state.todoList.length} addTodoList={this.addTodoList} />
+        <List content={this.state.todoList} />
+        <TForm
+          number={this.state.todoList.length}
+          addTodoList={this.addTodoList}
+        />
       </div>
     );
   }

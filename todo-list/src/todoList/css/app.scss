@@ -1,0 +1,28 @@
+.wrapper {
+  width: 500px;
+  border: 1px dashed #7b63ed;
+  padding: 30px;
+  margin: 50px auto;
+}
+
+.form {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0;
+
+  &-input {
+    width: 250px;
+    font-size: 16px;
+    padding: 20px;
+
+    &>input {
+      width: 100%;
+    }
+  }
+
+  // &-btn {
+  //   margin-left: 20px;
+  // }
+}
