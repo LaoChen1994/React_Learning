@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-
+// 第一个react组件
 class Header extends Component {
   render() {
     return <h1>Header</h1>;
   }
 }
-
+// 参数绑定与事件绑定
 class Content extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ class Content extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <div>content:{this.state.content}</div>
         <div>count: {this.state.count}</div>
         <button onClick={this.addCount}>增加数量</button>
@@ -41,7 +41,7 @@ class Content extends Component {
     );
   }
 }
-
+// 父子组件传参
 class Son extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ class Son extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <div>name:{this.props.name}</div>
         <button onClick={this.clickBtn.bind(this)}>改变名称</button>
         <br />
@@ -93,7 +93,7 @@ class Father extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <div>Msg: {this.state.msg}</div>
         <Son
           name={this.state.name}
@@ -104,7 +104,7 @@ class Father extends Component {
     );
   }
 }
-
+// 列表渲染
 class ListRender extends Component {
   constructor(props) {
     super(props);
@@ -127,7 +127,7 @@ class ListRender extends Component {
     });
     this.state.userInfo.forEach((element, index) => {
       content.push(
-        <tr>
+        <tr key={`con-${index}`}>
           <td>{element.name}</td>
           <td>{element.age}</td>
           <td>{element.habbits}</td>
@@ -135,7 +135,7 @@ class ListRender extends Component {
       );
     });
     return (
-      <div className="table">
+      <div className="table wrapper">
         <table>
           <caption>用户信息</caption>
           <thead>
@@ -148,6 +148,78 @@ class ListRender extends Component {
   }
 }
 
+// 表单数据的双向绑定
+
+class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { content: '', sex: '1', fruit: '' };
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
+    this.sexChange = this.sexChange.bind(this);
+    this.fruitChange = this.fruitChange.bind(this);
+  }
+
+  inputChangeHandler(event) {
+    this.setState({ content: event.target.value });
+  }
+
+  sexChange(event) {
+    this.setState({ sex: event.target.value });
+  }
+
+  fruitChange(event) {
+    this.setState({ fruit: event.target.value });
+  }
+
+  render() {
+    const fruitSelector = ['banana', 'apple', 'orange'].map((elem, index) => (
+      <option value={elem} key={index}>
+        {elem}
+      </option>
+    ));
+    return (
+      <div className="wrapper">
+        <div className="input">
+          <input
+            type="text"
+            value={this.state.content}
+            onChange={this.inputChangeHandler}
+          />
+          <div>INPUT: {this.state.content}</div>
+        </div>
+
+        <div className="sex">
+          <input
+            type="radio"
+            value="1"
+            checked={this.state.sex === '1'}
+            onChange={this.sexChange}
+          />
+          男
+          <input
+            type="radio"
+            value="2"
+            checked={this.state.sex === '2'}
+            onChange={this.sexChange}
+          />
+          女<div>SEX:{this.state.sex === '1' ? '男' : '女'}</div>
+        </div>
+
+        <div className="select">
+          <select
+            name="city"
+            value={this.state.fruit}
+            onChange={this.fruitChange}
+          >
+            {fruitSelector}
+          </select>
+          <div>SELECTED:{this.state.fruit}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
 function App() {
   return (
     <div>
@@ -155,6 +227,7 @@ function App() {
       <Content />
       <Father />
       <ListRender />
+      <Form />
     </div>
   );
 }
