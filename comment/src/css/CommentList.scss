@@ -1,0 +1,12 @@
+.Comment-list {
+  margin-top: 10px;
+}
+.Comment {
+  display: flex;
+  .username {
+    color: rgba(9, 9, 219, 0.781);
+  }
+  .commnent {
+    color: rgb(211, 116, 8);
+  }
+}

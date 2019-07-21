@@ -1,0 +1,10 @@
+.text {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  & > span {
+    color: #999;
+    font-size: 14px;
+    width: 70px;
+  }
+}
