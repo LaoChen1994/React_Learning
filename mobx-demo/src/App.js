@@ -16,7 +16,7 @@ class TodoListView extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         <ul className="todo-list">
           {this.props.Store.todos.map(todo => (
             <li key={todo.id}>
@@ -43,7 +43,7 @@ class TodoListView extends Component {
             {this.props.Store.getUnifinishedToCount}
           </span>
         </div>
-      </Fragment>
+      </>
     );
   }
 }

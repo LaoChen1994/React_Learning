@@ -1,44 +1,66 @@
-import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-import './index.css';
+import React from "react";
+import "./App.css";
+// import NewInput from "./Component/wrapperInput";
+import Form from "./Component/Form";
+import { BindInputText } from "./Component/BindInput";
 
-const users = [
-  {
-    username: 'Jerry',
-    age: 21,
-    gender: 'male'
-  },
-  {
-    username: 'Tomy',
-    age: 22,
-    gender: 'male'
-  },
-  {
-    username: 'Lily',
-    age: 19,
-    gender: 'female'
-  },
-  {
-    username: 'Lucy',
-    age: 20,
-    gender: 'female'
+class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formData: [],
+      eventId: 1
+    };
+    // this.onChange.bind(this);
   }
-];
 
-class App extends Component {
-  render() {
-    let userElem = [];
-    for (const item of users) {
-      userElem.push(
-        <div>
-          <div>姓名: {item.username}</div>
-          <div>年龄：{item.age}</div>
-          <div>性别：{item.gender}</div>
-        </div>
-      );
+  renderObj = elem => {
+    let render = [];
+    for (const key in elem) {
+      if (elem.hasOwnProperty(key)) {
+        render.push(
+          <div>
+            {key}-{elem[key]}
+          </div>
+        );
+      }
     }
-    return <div>{userElem}</div>;
+    return render;
+  };
+
+  renderFormData = () => {
+    let { formData } = this.state;
+    return formData.map((elem, index) => (
+      <div key={`index-${index}`}>{this.renderObj(elem)}</div>
+    ));
+  };
+
+  addEvent(item) {
+    console.log(123);
+    this.setState(state => {
+      let { formData, eventId } = state;
+      formData.push({ ...item, id:    });
+      eventId++;
+      return {
+        formData,
+        eventId
+      };
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        {/* 用户名：
+        <NewInput username="jack" age="18" /> */}
+        <p>表格的双向绑定</p>
+        <Form onSubmit={this.addEvent.bind(this)}>
+          <BindInputText type="text" v_model="name" />
+        </Form>
+        {this.renderFormData()}
+      </div>
+    );
   }
 }
 
-export default App;
+export default Index;
