@@ -15,14 +15,8 @@ function WidthDataBind(WrapperComponent) {
     onChange(event) {
       const { changeModel } = this.context;
       const { v_model } = this.props;
-      const { onChange } = this.props;
       changeModel(v_model, event.target.value);
       this.setState({ value: event.target.value });
-      if (typeof onChange === "function") {
-        const newEvent = { ...event, name: v_model, value: event.target.value };
-        console.log(newEvent);
-        // onChange(newEvent);
-      }
     }
 
     componentDidMount() {

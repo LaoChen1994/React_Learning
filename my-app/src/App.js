@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-// import NewInput from "./Component/wrapperInput";
 import Form from "./Component/Form";
 import { BindInputText } from "./Component/BindInput";
 
@@ -39,7 +38,7 @@ class Index extends React.Component {
     console.log(123);
     this.setState(state => {
       let { formData, eventId } = state;
-      formData.push({ ...item, id:    });
+      formData.push({ ...item, id: eventId });
       eventId++;
       return {
         formData,
