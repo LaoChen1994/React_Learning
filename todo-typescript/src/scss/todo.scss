@@ -1,0 +1,32 @@
+.list {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  line-height: 30px;
+  &:last-child {
+    border-bottom: 0;
+  }
+  &-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    &__checkbox {
+      margin-right: 10px;
+      // float: left;
+    }
+  }
+  &-control {
+    & > button {
+      // float: right;
+      width: 80px;
+      height: 20px;
+      line-height: 20px;
+      background: blue;
+      color: #fff;
+      outline: none;
+      border: 0;
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}

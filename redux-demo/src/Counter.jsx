@@ -1,24 +1,38 @@
 import React, { Component } from "react";
-import { Store } from "./Store/index";
 import { CounterAction } from "./actions/index";
+import { connect } from "react-redux";
+// import { CounterAction } from "./actions/index";
 
-export default class Counter extends Component {
+class Counter extends Component {
   addCounter() {
-    Store.dispatch(CounterAction.addCounter);
-    console.log(Store.getState().counter);
+    this.props.dispatch(CounterAction.addCounter);
   }
+
   descCounter() {
-    Store.dispatch(CounterAction.desCounter);
-    console.log(Store.getState().counter);
+    this.props.dispatch(CounterAction.desCounter);
   }
+
   render() {
-    // let { count } = Store.getState().counter;
+    let { count } = this.props.count;
+    // console.log(this.props.count.count);
     return (
       <div>
-        现在的数字是: {Store.getState().counter.count}
-        <button onClick={this.addCounter}>数字+1</button>
-        <button onClick={this.descCounter}>数字-1</button>
+        现在的数字是: {count}
+        <button onClick={this.addCounter.bind(this)}>数字+1</button>
+        <button onClick={this.descCounter.bind(this)}>数字-1</button>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  count: state.counter,
+  post: state.post
+});
+
+// const mapDispatchToProps = {
+
+// };
+
+//通过connect连接组件和数据
+export default connect(mapStateToProps)(Counter);
