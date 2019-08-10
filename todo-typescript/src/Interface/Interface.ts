@@ -11,6 +11,7 @@ export interface todoItem {
 
 export interface appStoreState {
   id: number;
+  unsolvedNumber: number;
   todoItem: Array<todoState>;
   addTodoItem: (event: todoState) => void;
   deleteTodo: (event: todoState) => void;

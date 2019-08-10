@@ -15,18 +15,19 @@ export default class Controller extends Component<IProps> {
   };
 
   inputChange(event: ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value);
     this.setState({ itemValue: event.target.value });
   }
 
   addTodoList() {
     const { Store } = this.props;
-    if (Store) {
+    if (Store && this.state.itemValue) {
       Store.addTodoItem({
         item: this.state.itemValue,
         isDone: false,
         id: 1
       });
+    } else {
+      alert("The todo items is null");
     }
   }
 

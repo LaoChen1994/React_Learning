@@ -2,6 +2,7 @@
   display: flex;
   border-bottom: 1px solid #eee;
   line-height: 30px;
+  color: purple;
   &:last-child {
     border-bottom: 0;
   }
@@ -28,5 +29,18 @@
         margin-right: 10px;
       }
     }
+  }
+}
+
+.total {
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: purple;
+  text-align: left;
+  margin-top: 20px;
+  & > span {
+    color: red;
+    font-size: 20px;
   }
 }

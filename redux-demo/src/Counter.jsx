@@ -30,9 +30,5 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-// const mapDispatchToProps = {
-
-// };
-
 //通过connect连接组件和数据
 export default connect(mapStateToProps)(Counter);

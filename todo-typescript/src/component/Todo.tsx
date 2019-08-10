@@ -38,7 +38,7 @@ export default class App extends React.Component<IAppProps> {
               className="list-item__checkbox"
             />
             <span className="list-item__text">
-              <span>{`${elem.item}`}</span>
+              <span>{`${elem.id}-${elem.item}`}</span>
             </span>
           </div>
           <div className="list-control">
@@ -53,6 +53,16 @@ export default class App extends React.Component<IAppProps> {
   };
 
   public render() {
-    return this.renderTodoList();
+    const { Store } = this.props;
+    return (
+      <>
+        {this.renderTodoList()}
+        {Store && (
+          <div className="total">
+            Unsolved Numbers: <span>{Store.unsolvedNumber}</span>
+          </div>
+        )}
+      </>
+    );
   }
 }
