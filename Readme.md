@@ -131,6 +131,18 @@ router 的简单例子(未完成)
 ## react-redux
 
 redux 的基础语法
+如何在 react 中引入 redux，并实现数据的绑定监听
+
+### 内容包括
+
+| id  | 组件名    | 功能                                   |
+| --- | --------- | -------------------------------------- |
+| 1   | Store.js  | 通过 createStore 来创建一个 Store      |
+| 2   | Action.js | 定义的 Action 方法，通过 action 方法来 |
+
+## react-redux
+
+redux 的基础语法
 
 ### 内容包括
 

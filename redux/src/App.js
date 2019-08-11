@@ -1,26 +1,44 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { Store } from "./Store";
+import { Button } from "antd";
+import { increase, decrease } from "./Action";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = Store.getState();
+    this.addNumber = this.addNumber.bind(this);
+    this.decreaseNumber = this.decreaseNumber.bind(this);
+    this.handlerChange = this.handlerChange.bind(this);
+    Store.subscribe(this.handlerChange);
+  }
+
+  addNumber = () => {
+    Store.dispatch(increase);
+  };
+
+  decreaseNumber = () => {
+    Store.dispatch(decrease);
+  };
+
+  handlerChange = () => {
+    this.setState(() => Store.getState());
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <div>Count: {this.state.count}</div>
+        <Button onClick={this.addNumber} type="primary">
+          +1
+        </Button>
+        <Button onClick={this.decreaseNumber} type="danger">
+          -1
+        </Button>
+      </div>
+    );
+  }
 }
 
 export default App;

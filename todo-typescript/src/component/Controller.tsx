@@ -7,12 +7,22 @@ export interface IProps {
   Store?: appStoreState;
 }
 
+export interface IState {
+  itemValue: string;
+}
+
 @inject("Store")
 @observer
-export default class Controller extends Component<IProps> {
+export default class Controller extends Component<IProps, IState> {
+  myRef?: HTMLInputElement | null;
+
   state = {
     itemValue: ""
   };
+
+  componentDidMount() {
+    console.log(this.myRef);
+  }
 
   inputChange(event: ChangeEvent<HTMLInputElement>) {
     this.setState({ itemValue: event.target.value });
@@ -40,6 +50,7 @@ export default class Controller extends Component<IProps> {
             type="text"
             value={this.state.itemValue}
             onChange={this.inputChange.bind(this)}
+            ref={iref => (this.myRef = iref)}
           />
         </div>
         <button
