@@ -140,12 +140,27 @@ redux 的基础语法
 | 1   | Store.js  | 通过 createStore 来创建一个 Store      |
 | 2   | Action.js | 定义的 Action 方法，通过 action 方法来 |
 
-## react-redux
+## react-redux-demo
 
-redux 的基础语法
+react-redux 的基础语法
 
 ### 内容包括
 
-| id  | 组件名   | 功能                                                     |
-| --- | -------- | -------------------------------------------------------- |
-| 1   | index.js | reducer, action, combineReducers, createStore 的基本用法 |
+| id  | 组件名                  | 功能             |
+| --- | ----------------------- | ---------------- |
+| 1   | ./Store                 | 公共 Store       |
+| 2   | ./Action                | 全局 Action 方法 |
+| 3   | ./Reducer               | Reducer 方法     |
+| 4   | ./component/Counter.jsx | 计数器组件       |
+
+## react-redux-todolist
+
+react-redux + antd 的 todolist 实践
+
+| id  | 组件名                     | 功能             |
+| --- | -------------------------- | ---------------- |
+| 1   | ./Store                    | 公共 Store       |
+| 2   | ./Action                   | 全局 Action 方法 |
+| 3   | ./Reducer                  | Reducer 方法     |
+| 4   | ./component/Controller.jsx | 控制器组件       |
+| 5   | ./component/TodoList.jsx   | 显示的 Todo 列表 |
