@@ -1,0 +1,30 @@
+.wrapper {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #fff;
+    width: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    border-radius: 50%;
+    text-align: center;
+    border: 1px solid #fff;
+    cursor: pointer;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: inline-block;
+}

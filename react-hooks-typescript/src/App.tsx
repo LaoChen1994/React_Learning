@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import { async } from "q";
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -26,7 +25,7 @@ interface List {
 }
 
 function RenderList() {
-  const { listData, setListData } = useState([]);
+  const [listData, setListData] = useState<List[]>([]);
   async function getApiData(url: string) {
     const data = await axios.get(url);
     return data;
@@ -34,8 +33,10 @@ function RenderList() {
 
   useEffect(() => {
     const data = getApiData("http://jsonplaceholder.typicode.com/posts");
-    console.log(useEffect);
-    setListData(data);
+    data.then(data => {
+      setListData(data.data);
+    });
+    // setListData(data);
   });
 
   return (
@@ -53,6 +54,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Example />
+      <RenderList />
     </div>
   );
 };

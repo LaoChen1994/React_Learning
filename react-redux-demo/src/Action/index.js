@@ -11,7 +11,6 @@ export const Action = dispatch => {
       });
     },
     addSpecificNumber(data) {
-      console.log(data);
       return () =>
         dispatch({
           type: "addSpecfic",
