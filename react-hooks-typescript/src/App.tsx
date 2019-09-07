@@ -1,62 +1,24 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./App.css";
-
-function Example() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    document.title = `${count}`;
-  });
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click Me</button>
-    </div>
-  );
-}
-
-interface List {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-function RenderList() {
-  const [listData, setListData] = useState<List[]>([]);
-  async function getApiData(url: string) {
-    const data = await axios.get(url);
-    return data;
-  }
-
-  useEffect(() => {
-    const data = getApiData("http://jsonplaceholder.typicode.com/posts");
-    data.then(data => {
-      setListData(data.data);
-    });
-    // setListData(data);
-  });
-
-  return (
-    <ul>
-      {listData.map((elem, index) => (
-        <li key={index}>
-          {elem.id}-{elem.title}
-        </li>
-      ))}
-    </ul>
-  );
-}
+import React from 'react'
+import './App.css'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import Index from './component/Index'
+import { Counter } from './component/Counter'
+import TodoList from './component/TodoList'
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Example />
-      <RenderList />
+      <Router>
+        <nav>
+          <Link to="/">Index</Link>/<Link to="/counter">Counter</Link>/
+          <Link to="/todoList">todoList</Link>
+        </nav>
+        <Route path="/" component={Index} exact></Route>
+        <Route path="/counter" component={Counter}></Route>
+        <Route path="/todoList" component={TodoList}></Route>
+      </Router>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
