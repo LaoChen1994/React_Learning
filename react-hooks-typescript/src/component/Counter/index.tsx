@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Notify } from 'zent'
+import { Button } from 'zent'
 
 export interface IAppProps {}
 

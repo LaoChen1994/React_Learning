@@ -1,44 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### React Hooks
 
-## Available Scripts
+本文参考主要博文:
 
-In the project directory, you can run:
+[阮一峰老师的 React-hooks 教程](http://www.ruanyifeng.com/blog/2019/09/react-hooks.html)
 
-### `npm start`
+[How to fetch data with React Hooks?](https://www.robinwieruch.de/react-hooks-fetch-data)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+[React-hooks 的官方文档](https://zh-hans.reactjs.org/docs/hooks-effect.html)
 
-### `npm test`
+**React hooks 的主要功能是让函数式组件能够模拟出自身的状态 state 和生命钩子函数**
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+常用的 React Hooks 函数包括
 
-### `npm run build`
+- useState
+- useEffect
+- useContext
+- useReducer
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. useState
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+useState 主要是创建一个 state 变量并赋予初始值
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+通过数组解构的方式来获取 state 变量和一个改变该变量的函数
 
-### `npm run eject`
+```javascript
+import React, { useState, useEffect } from 'react'
+import { Button, Notify } from 'zent'
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+export function Counter(props) {
+  // 这里的counter为state中的一个值且其初始值为0
+  const [counter, setCounter] = useState(0)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  const handleSetCounter = number => () => {
+    // 通过调用setCounter可以实现对于counter的赋值
+    setCounter(number)
+  }
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  return (
+    <div>
+      <div>{counter}</div>
+      <Button onClick={handleSetCounter(counter + 1)} type="primary">
+        +1
+      </Button>
+      <Button type="primary" onClick={handleSetCounter(counter - 1)}>
+        -1
+      </Button>
+      <Button type="danger" onClick={handleSetCounter(0)}>
+        reset
+      </Button>
+    </div>
+  )
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 2. useEffect
 
-## Learn More
+- useEfffect 的执行一般在页面渲染之后 -> React 保证了每次 effect 的执行都在页面的 DOM 更新完毕之后！
+- useEffect 一般放在函数内部，这样可以直接完成对 state 和更改 state 函数的调用方法
+- useEffect 的第一个参数为一个函数，用来作为每次渲染完成后执行的回调函数 effect，通过 return 一个函数来作为清除操作时调用的函数(组件卸载的时候调用)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 可能存在的问题
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+这里可能会有一个问题　如果当我们在 useEffect 中调用了改变 state 那可能又会渲染这个函数, 再调用 effect 函数可能就会出现循环调用的问题
+
+#### 解决办法
+
+**通过 useEffect 函数中的第二个参数来解决**
+
+我们可以通过 useEffect 中的第二个参数来设置，该 effect 函数只在特定的某个参数进行变动的时候才会执行
+
+<font color=red>这里要注意的是，如果第二个参数为[]说明该函数在任何参数变动的时候都不执行，则该函数只在一开始初始化 render 的时候执行一次，所以代表的是 componentDidMount 这个钩子函数</font>
