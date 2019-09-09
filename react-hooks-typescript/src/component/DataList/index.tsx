@@ -4,8 +4,16 @@ import { Table, Button } from 'zent'
 
 interface IDataListProps {}
 
+interface IComment {
+  body: string;
+  email: string;
+  id: number;
+  postId: number;
+  name: string;
+}
+
 export function DataList(props: IDataListProps) {
-  const [commentList, setCommentList] = useState([])
+  const [commentList, setCommentList] = useState([] as IComment[])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,12 +27,20 @@ export function DataList(props: IDataListProps) {
   }, [])
 
   useEffect(() => {
-    console.log('没事情就调用我')
+    console.log('Reset的时只会调用我')
   })
 
   const commentReset = () => {
     setCommentList([])
   }
+
+  const deleteData = (data: IComment) => () => {
+    const index = commentList.findIndex(elem => elem.id === data.id);
+    let newData = [...commentList];
+    newData.splice(index, 1);
+    console.log(commentList.length);
+    setCommentList(newData);
+  } 
 
   const columns = [
     {
@@ -42,13 +58,20 @@ export function DataList(props: IDataListProps) {
     {
       title: '内容',
       name: 'content'
+    },
+    {
+      title: '操作',
+      name: '',
+      bodyRender: (data) => {
+        return <Button onClick={deleteData(data)}>删除</Button>
+      }
     }
   ]
 
   return (
     <div>
       <Button onClick={commentReset} type="primary">
-        Reset
+        清空
       </Button>
       <Table columns={columns} datasets={commentList} />
     </div>

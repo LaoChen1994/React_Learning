@@ -1,13 +1,15 @@
-import * as React from 'react'
+// Index.tsx
+import React, { useContext } from 'react'
+// 父组件
+import { Context } from '../../App';
 
-export interface IIndexProps {}
+export function Index() {
 
-export default class Index extends React.PureComponent<IIndexProps> {
-  public render() {
-    return (
-      <div>
-        <h1>Index</h1>
-      </div>
-    )
-  }
+  const { name } = useContext(Context);
+
+  return (
+    <div>
+      Index { name }
+    </div>
+  )
 }
